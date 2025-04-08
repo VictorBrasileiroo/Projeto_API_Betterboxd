@@ -4,6 +4,7 @@ using Betterboxd.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Betterboxd.Infra.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250408233253_update-avaliacaomodel-foreignkey")]
+    partial class updateavaliacaomodelforeignkey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,6 +39,9 @@ namespace Betterboxd.Infra.Migrations
                     b.Property<DateOnly>("DataAvaliacao")
                         .HasColumnType("date");
 
+                    b.Property<int?>("FilmeModelId")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdFilme")
                         .HasColumnType("int");
 
@@ -45,11 +51,18 @@ namespace Betterboxd.Infra.Migrations
                     b.Property<decimal>("Nota")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("UserModelId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("FilmeModelId");
 
                     b.HasIndex("IdFilme");
 
                     b.HasIndex("IdUser");
+
+                    b.HasIndex("UserModelId");
 
                     b.ToTable("Avaliações");
                 });
@@ -106,17 +119,25 @@ namespace Betterboxd.Infra.Migrations
 
             modelBuilder.Entity("Betterboxd.Core.Entities.AvaliacaoModel", b =>
                 {
-                    b.HasOne("Betterboxd.Core.Entities.FilmeModel", "Filme")
+                    b.HasOne("Betterboxd.Core.Entities.FilmeModel", null)
                         .WithMany("Avaliacoes")
+                        .HasForeignKey("FilmeModelId");
+
+                    b.HasOne("Betterboxd.Core.Entities.FilmeModel", "Filme")
+                        .WithMany()
                         .HasForeignKey("IdFilme")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Betterboxd.Core.Entities.UserModel", "Usuario")
-                        .WithMany("Avaliacoes")
+                        .WithMany()
                         .HasForeignKey("IdUser")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Betterboxd.Core.Entities.UserModel", null)
+                        .WithMany("Avaliacoes")
+                        .HasForeignKey("UserModelId");
 
                     b.Navigation("Filme");
 
