@@ -36,7 +36,7 @@ namespace Betterboxd.Infra.Repositories
         public async Task<List<FilmeModel>> GetByDirector(string director)
         {
             var response = await _context.Filmes
-                 .Where(f => f.Diretor == director)
+                 .Where(f => f.Diretor.ToLower().Trim() == director.ToLower().Trim())
                  .ToListAsync();
 
             return response;
@@ -45,7 +45,7 @@ namespace Betterboxd.Infra.Repositories
         public async Task<List<FilmeModel>> GetByGender(string gender)
         {
             var response = await _context.Filmes
-                 .Where(f => f.Genero == gender)
+                 .Where(f => f.Genero.ToLower().Trim() == gender.ToLower().Trim())
                  .ToListAsync();
 
             return response;

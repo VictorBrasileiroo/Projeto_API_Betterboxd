@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Betterboxd.App\Betterboxd.App.csproj" />
     <ProjectReference Include="..\Betterboxd.Core\Betterboxd.Core.csproj" />
     <ProjectReference Include="..\Betterboxd.Infra\Betterboxd.Infra.csproj" />

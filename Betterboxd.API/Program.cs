@@ -1,3 +1,5 @@
+using Betterboxd.App.Interfaces;
+using Betterboxd.App.Services;
 using Betterboxd.Core.Interfaces;
 using Betterboxd.Infra.Context;
 using Betterboxd.Infra.Repositories;
@@ -18,6 +20,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddScoped<IFilmeRepository, FilmeRepository>();
+builder.Services.AddScoped<IFilmeServices, FilmeServices>();
 
 var app = builder.Build();
 
