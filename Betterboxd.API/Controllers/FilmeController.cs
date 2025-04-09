@@ -1,4 +1,6 @@
-﻿using Betterboxd.App.Interfaces;
+﻿using System.ComponentModel.DataAnnotations;
+using Betterboxd.App.Dtos;
+using Betterboxd.App.Interfaces;
 using Betterboxd.Core.Entities;
 using Betterboxd.Core.Shared;
 using Microsoft.AspNetCore.Http;
@@ -125,6 +127,39 @@ namespace Betterboxd.API.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, new ResponseModel<string>(false, "Erro interno", ex.Message));
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CadastrarFilme(FilmeCriarDto dto)
+        {
+            try
+            {
+                var response = await _services.CadastrarFilme(dto);
+                return Ok(new ResponseModel<FilmeModel>(true, "Filmes cadastrado com sucesso!", response));
+            }
+            catch (ValidationException ex)
+            {
+                return StatusCode(400 ,new ResponseModel<string>(false, "Erro de validação", ex.Message));
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditarFilme(FilmeEditarDto dto)
+        {
+            try
+            {
+                var response = await _services.EditarFilme(dto);
+                return Ok(new ResponseModel<FilmeModel>(true, "Filmes Editado com sucesso!", response));
+            }
+            catch (ValidationException ex)
+            {
+                return StatusCode(400, new ResponseModel<string>(false, "Erro de validação", ex.Message));
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(404, new ResponseModel<string>(false, "Erro ao encontrar o filme", ex.Message));
+
             }
         }
 

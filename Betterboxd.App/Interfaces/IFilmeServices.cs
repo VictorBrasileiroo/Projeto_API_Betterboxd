@@ -15,8 +15,8 @@ namespace Betterboxd.App.Interfaces
         Task<List<FilmeModel>> ListarPorDiretor(string diretor);
         Task<List<FilmeModel>> ListarPorGenero(string genero);
         Task<List<FilmeModel>> ListarPorAnoLancamento(int ano);
-        Task<FilmeCriarDto> CadastrarFilme(FilmeCriarDto dto);
-        Task<FilmeEditarDto> EditarFilme(FilmeEditarDto dto);
+        Task<FilmeModel> CadastrarFilme(FilmeCriarDto dto);
+        Task<FilmeModel> EditarFilme(FilmeEditarDto dto);
         Task<FilmeModel> RemoverFilme(int id);
     }
 }

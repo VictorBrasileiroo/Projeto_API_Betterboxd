@@ -8,5 +8,11 @@ namespace Betterboxd.App.Dtos
 {
     public class FilmeEditarDto
     {
+        public int Id { get; set; }
+        public string? Titulo { get; set; }
+        public string? Sinopse { get; set; }
+        public string? Diretor { get; set; }
+        public string? Genero { get; set; }
+        public DateOnly? DataLancamento { get; set; }
     }
 }

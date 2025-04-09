@@ -1,9 +1,12 @@
 using Betterboxd.App.Interfaces;
 using Betterboxd.App.Services;
+using Betterboxd.App.Validations;
 using Betterboxd.Core.Interfaces;
 using Betterboxd.Infra.Context;
 using Betterboxd.Infra.Repositories;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +24,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IFilmeRepository, FilmeRepository>();
 builder.Services.AddScoped<IFilmeServices, FilmeServices>();
+
+#pragma warning disable CS0618 // O tipo ou membro é obsoleto
+builder.Services.AddControllers()
+    .AddFluentValidation(fv =>
+    {
+        fv.RegisterValidatorsFromAssemblyContaining<FilmeCriarValidator>();
+        fv.RegisterValidatorsFromAssemblyContaining<FilmeEditarValidator>();
+    });
+#pragma warning restore CS0618 // O tipo ou membro é obsoleto
 
 var app = builder.Build();
 
