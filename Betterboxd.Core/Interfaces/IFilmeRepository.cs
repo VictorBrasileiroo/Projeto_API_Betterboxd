@@ -13,7 +13,7 @@ namespace Betterboxd.Core.Interfaces
         Task<FilmeModel> GetById(int id);
         Task<List<FilmeModel>> GetByGender(string gender);
         Task<List<FilmeModel>> GetByDirector(string director);
-        Task<List<FilmeModel>> GetByDate(DateOnly date);
+        Task<List<FilmeModel>> GetByYear(int year);
         Task<FilmeModel> Create(FilmeModel filme);
         Task<FilmeModel> Update(FilmeModel filme);
         Task<FilmeModel> Delete(FilmeModel filme);
