@@ -28,7 +28,7 @@ namespace Betterboxd.Infra.Context
                 .HasOne(a => a.Filme)
                 .WithMany(f => f.Avaliacoes)
                 .HasForeignKey(a => a.IdFilme)
-                .OnDelete(DeleteBehavior.Restrict); ;
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
