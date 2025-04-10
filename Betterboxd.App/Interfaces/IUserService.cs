@@ -13,7 +13,7 @@ namespace Betterboxd.App.Interfaces
         Task<List<UserModel>> ListarTodos();
         Task<UserModel> BuscarPorId(int id);
         Task<UserModel> CadastrarUser(UserCriaDto dto);
-        Task<UserModel> EditarUser(UserEditarDto dto);
+        Task<UserModel> EditarUser(UserEditarDto dto, int id);
         Task<UserModel> RemoverUser(int id);
     }
 }

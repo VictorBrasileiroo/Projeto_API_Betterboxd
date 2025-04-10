@@ -5,8 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Betterboxd.App.Dtos;
 using Betterboxd.App.Interfaces;
+using Betterboxd.App.Validations;
 using Betterboxd.Core.Entities;
 using Betterboxd.Core.Interfaces;
+using FluentValidation;
+using ValidationException = FluentValidation.ValidationException;
 
 namespace Betterboxd.App.Services
 {
@@ -21,14 +24,50 @@ namespace Betterboxd.App.Services
             return response;
         }
 
-        public Task<UserModel> CadastrarUser(UserCriaDto dto)
+        public async Task<UserModel> CadastrarUser(UserCriaDto dto)
         {
-            throw new NotImplementedException();
+
+            var validator = new UserCriarValidator();
+            var result = validator.Validate(dto);
+
+            if (!result.IsValid)
+            {
+                var erros = string.Join("; ", result.Errors.Select(e => e.ErrorMessage));
+                throw new ValidationException(erros);
+            }
+
+            var user = new UserModel()
+            {
+                Nome = dto.Nome,
+                Email = dto.Email
+            };
+
+            var response = await _repository.Create(user);
+            return response;
         }
 
-        public Task<UserModel> EditarUser(UserEditarDto dto)
+        public async Task<UserModel> EditarUser(UserEditarDto dto, int id)
         {
-            throw new NotImplementedException();
+            var user = await _repository.GetById(id);
+            if (user == null) throw new Exception("Usuário não encontrado");
+
+            var validator = new UserEditarValidator();
+            var result = validator.Validate(dto);
+
+            if(dto.Email == "string")
+            {
+                if (!result.IsValid)
+                {
+                    var erros = string.Join("; ", result.Errors.Select(e => e.ErrorMessage));
+                    throw new ValidationException(erros);
+                }
+            }
+            
+            AtualizarCampoSeMudou(user.Nome,dto.Nome, novoValor => user.Nome = novoValor);
+            AtualizarCampoSeMudou(user.Email,dto.Email, novoValor => user.Email = novoValor);
+
+            var response = await _repository.Update(user);
+            return response;
         }
 
         public async Task<List<UserModel>> ListarTodos()
@@ -48,6 +87,14 @@ namespace Betterboxd.App.Services
 
             return response;
 
+        }
+
+        private void AtualizarCampoSeMudou<T>(T campoAtual, T novoValor, Action<T> atualizarCampo)
+        {
+            if (novoValor != null && !Equals(campoAtual, novoValor) && !Equals(novoValor, "string"))
+            {
+                atualizarCampo(novoValor);
+            }
         }
     }
 }
