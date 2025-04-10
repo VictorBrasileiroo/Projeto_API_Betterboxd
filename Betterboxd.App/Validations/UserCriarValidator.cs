@@ -19,7 +19,6 @@ namespace Betterboxd.App.Validations
 
             RuleFor(u => u.Email)
                 .NotEmpty().WithMessage("O e-mail é obrigatório")
-                .Must(e => e != "string").WithMessage("Digite um nome válido")
                 .Matches(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$").WithMessage("Digite um e-mail válido.");
         }
     }
