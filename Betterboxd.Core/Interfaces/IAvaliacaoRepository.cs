@@ -13,9 +13,9 @@ namespace Betterboxd.Core.Interfaces
         Task<AvaliacaoModel> GetById(int id);
         Task<List<AvaliacaoModel>> GetAllByUserId(int idUser);
         Task<List<AvaliacaoModel>> GetAllByFilmId(int idFilm);
-        Task<AvaliacaoModel> CalcularNotaMediaFilme(int idFilm);
-        Task<AvaliacaoModel> Create(AvaliacaoModel user);
-        Task<AvaliacaoModel> Update(AvaliacaoModel user);
-        Task<AvaliacaoModel> Delete(AvaliacaoModel user);
+        Task<decimal> CalcularNotaMediaFilme(int idFilm);
+        Task<AvaliacaoModel> Create(AvaliacaoModel avaliacao);
+        Task<AvaliacaoModel> Update(AvaliacaoModel avaliacao);
+        Task<AvaliacaoModel> Delete(AvaliacaoModel avaliacao);
     }
 }

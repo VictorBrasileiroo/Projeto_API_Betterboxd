@@ -32,6 +32,7 @@ builder.Services.AddScoped<IFilmeRepository, FilmeRepository>();
 builder.Services.AddScoped<IFilmeServices, FilmeServices>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
 
 #pragma warning disable CS0618 // O tipo ou membro é obsoleto
 builder.Services.AddControllers()
