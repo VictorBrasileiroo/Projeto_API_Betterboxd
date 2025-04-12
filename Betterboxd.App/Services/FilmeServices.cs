@@ -19,7 +19,24 @@ namespace Betterboxd.App.Services
     public class FilmeServices : IFilmeServices
     {
         private readonly IFilmeRepository _repository;
-        public FilmeServices(IFilmeRepository repository) => _repository = repository;
+        private readonly IAvaliacaoRepository _repositoryAvaliacao;
+        public FilmeServices(IFilmeRepository repository, IAvaliacaoRepository repositoryAvaliacao)
+        {
+            _repository = repository;
+            _repositoryAvaliacao = repositoryAvaliacao;
+        }
+
+        public async Task AtualizarNotaMediaFilme(int idFilme)
+        {
+            var notaMedia = await _repositoryAvaliacao.CalcularNotaMediaFilme(idFilme);
+
+            var filme = await _repository.GetById(idFilme);
+            if (filme == null) throw new Exception("Filme não encontrado!");
+
+            filme.NotaMedia = notaMedia;
+
+            await _repository.Update(filme);
+        }
 
         public async Task<FilmeModel> BuscarPorId(int id)
         {

@@ -8,13 +8,13 @@ namespace Betterboxd.Core.Shared
 {
     public class ResponseModel<T>
     {
-        public bool Sucess { get; set; }
+        public bool Success { get; set; }
         public string Mensagem { get; set; } = string.Empty;
         public T? Dados { get; set; }
 
         public ResponseModel(bool sucesso, string mensagem, T dados)
         {
-            this.Sucess = sucesso;
+            this.Success = sucesso;
             this.Mensagem = mensagem;
             this.Dados = dados;
         }

@@ -39,13 +39,13 @@ namespace Betterboxd.Infra.Repositories
             return avaliacao;
         }
 
-        public async Task<List<AvaliacaoModel>> GetAll() => await _context.Avaliações.ToListAsync();
+        public async Task<List<AvaliacaoModel>> GetAll() => await _context.Avaliações.Include(a => a.Filme).Include(a => a.Usuario).ToListAsync();
 
-        public async Task<List<AvaliacaoModel>> GetAllByFilmId(int idFilm) => await _context.Avaliações.Where(a => a.IdFilme == idFilm).ToListAsync();
+        public async Task<List<AvaliacaoModel>> GetAllByFilmId(int idFilm) => await _context.Avaliações.Where(a => a.IdFilme == idFilm).Include(a => a.Filme).Include(a => a.Usuario).ToListAsync();
 
-        public async Task<List<AvaliacaoModel>> GetAllByUserId(int idUser) => await _context.Avaliações.Where(a => a.IdUser == idUser).ToListAsync();
+        public async Task<List<AvaliacaoModel>> GetAllByUserId(int idUser) => await _context.Avaliações.Where(a => a.IdUser == idUser).Include(a => a.Filme).Include(a => a.Usuario).ToListAsync();
 
-        public async Task<AvaliacaoModel> GetById(int id) => await _context.Avaliações.FindAsync(id);
+        public async Task<AvaliacaoModel> GetById(int id) => await _context.Avaliações.Include(a => a.Filme).Include(a => a.Usuario).FirstOrDefaultAsync(a => a.Id == id);
 
         public async Task<AvaliacaoModel> Update(AvaliacaoModel avaliacao)
         {

@@ -18,5 +18,6 @@ namespace Betterboxd.App.Interfaces
         Task<FilmeModel> CadastrarFilme(FilmeCriarDto dto);
         Task<FilmeModel> EditarFilme(FilmeEditarDto dto);
         Task<FilmeModel> RemoverFilme(int id);
+        Task AtualizarNotaMediaFilme(int idFilme);
     }
 }

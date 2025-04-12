@@ -33,6 +33,7 @@ builder.Services.AddScoped<IFilmeServices, FilmeServices>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
+builder.Services.AddScoped<IAvaliacaoService, AvaliacaoService>();
 
 #pragma warning disable CS0618 // O tipo ou membro é obsoleto
 builder.Services.AddControllers()
@@ -40,6 +41,9 @@ builder.Services.AddControllers()
     {
         fv.RegisterValidatorsFromAssemblyContaining<FilmeCriarValidator>();
         fv.RegisterValidatorsFromAssemblyContaining<FilmeEditarValidator>();
+        fv.RegisterValidatorsFromAssemblyContaining<UserCriarValidator>();
+        fv.RegisterValidatorsFromAssemblyContaining<UserEditarValidator>();
+        fv.RegisterValidatorsFromAssemblyContaining<AvaliacaoCriarValidator>();
     });
 #pragma warning restore CS0618 // O tipo ou membro é obsoleto
 
