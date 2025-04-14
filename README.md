@@ -1,5 +1,5 @@
 # 📱 API BetterBoxd
-<img src="">
+<img src="https://raw.githubusercontent.com/VictorBrasileiroo/Projeto_API_Betterboxd/refs/heads/master/bannerBetterBoxd.svg">
 
 ![.NET Core](https://img.shields.io/badge/.NET%20Core-8.0-purple)
 ![C#](https://img.shields.io/badge/C%23-12-blue)
