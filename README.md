@@ -1,5 +1,5 @@
-# 📱 API StoreManager
-<img src="https://github.com/VictorBrasileiroo/StoreManager-API/blob/main/banner.png">
+# 📱 API BetterBoxd
+<img src="">
 
 ![.NET Core](https://img.shields.io/badge/.NET%20Core-8.0-purple)
 ![C#](https://img.shields.io/badge/C%23-12-blue)
@@ -52,7 +52,6 @@ graph TD
 Esse fluxo garante que as informações sobre os filmes estejam sempre atualizadas de forma dinâmica, refletindo com precisão a média das avaliações feitas pelos usuários.
 
 ## 📚 Documentação da API
-
 Acesse a documentação completa da API através do Swagger: `https://localhost:7066/swagger/`
 
 ### 📋 Endpoints Disponíveis
@@ -66,23 +65,33 @@ Acesse a documentação completa da API através do Swagger: `https://localhost:
 | PUT    | `/api/v1/users/{id}`     | Edita um usuário existente pelo ID                          |
 | DELETE | `/api/v1/users/{id}`     | Remove um usuário pelo ID                                   |
 
-#### 👤 Filmes
+#### 🎬 Filmes
 | Método | Endpoint                | Descrição                                                   |
 |--------|-------------------------|-------------------------------------------------------------|
 | GET    | `/api/v1/filmes`          | Lista todos os filmes cadastrados                         |
 | GET    | `/api/v1/filmes/{id}`     | Obtém um filme específico pelo ID                          |
-| GET | `/api/v1/filmes/diretor/{diretor}`     | Obtém uma lista de filmes pelo nome do diretor                                  |
-| GET | `/api/v1/filmes/genero/{genero}`     | Obtém uma lista de filmes pelo nome do gênero                                   |
- GET | `/api/v1/filmes/ano/{ano}`     | Obtém uma lista de filmes pelo ano de lançamento                                  |
-| POST   | `/api/v1/filmes`          | Cadastra um novo filmes                                    |
+| GET    | `/api/v1/filmes/diretor/{diretor}`     | Obtém uma lista de filmes pelo nome do diretor |
+| GET    | `/api/v1/filmes/genero/{genero}`     | Obtém uma lista de filmes pelo nome do gênero  |
+| GET    | `/api/v1/filmes/ano/{ano}`     | Obtém uma lista de filmes pelo ano de lançamento |
+| POST   | `/api/v1/filmes`          | Cadastra um novo filme                                    |
 | PUT    | `/api/v1/filmes/{id}`     | Edita um filme existente pelo ID                          |
 | DELETE | `/api/v1/filmes/{id}`     | Remove um filme pelo ID                                   |
+
+#### ⭐ Avaliações
+| Método | Endpoint                | Descrição                                                   |
+|--------|-------------------------|-------------------------------------------------------------|
+| GET    | `/api/v1/avaliacoes`          | Lista todas as avaliações cadastradas                      |
+| GET    | `/api/v1/avaliacoes/{id}`     | Obtém uma avaliação específica pelo ID                      |
+| GET    | `/api/v1/avaliacoes/users/{idUser}`     | Lista todas as avaliações de um usuário específico |
+| POST   | `/api/v1/avaliacoes`          | Cadastra uma nova avaliação                                |
+| PUT    | `/api/v1/avaliacoes/{id}`     | Edita uma avaliação existente pelo ID                      |
+| DELETE | `/api/v1/avaliacoes/{id}`     | Remove uma avaliação pelo ID                               |
 
 ### ⚠️ Possíveis Códigos de Resposta
 
 - **200 OK**: Operação realizada com sucesso.
 - **400 Bad Request**: Erro de validação de dados.
-- **404 Not Found**: Recurso não encontrado (usuário, por exemplo).
+- **404 Not Found**: Recurso não encontrado (usuário, filme, avaliação, etc.).
 - **500 Internal Server Error**: Erro no servidor.
 
 
