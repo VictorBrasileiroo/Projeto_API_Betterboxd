@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Betterboxd.API.Controllers
 {
-    [Route("api/avaliacoes")]
+    [Route("api/v1/avaliacoes")]
     [ApiController]
     public class AvaliacaoController : ControllerBase
     {
