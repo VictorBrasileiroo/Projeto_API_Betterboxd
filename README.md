@@ -21,6 +21,7 @@ Construída com ASP.NET Core e C# 12, a aplicação possui uma arquitetura limpa
 - Entity Framework Core
 - SQL Server
 - Swagger/OpenAPI
+- FluentValidation
 
 ## ⚙️ Pré-requisitos
 
@@ -52,7 +53,7 @@ graph TD
 Esse fluxo garante que as informações sobre os filmes estejam sempre atualizadas de forma dinâmica, refletindo com precisão a média das avaliações feitas pelos usuários.
 
 ## 📚 Documentação da API
-Acesse a documentação completa da API através do Swagger: `https://localhost:7066/swagger/`
+Acesse a documentação completa da API através do Swagger: `https://localhost:7102/swagger/`
 
 ### 📋 Endpoints Disponíveis
 
@@ -94,37 +95,74 @@ Acesse a documentação completa da API através do Swagger: `https://localhost:
 - **404 Not Found**: Recurso não encontrado (usuário, filme, avaliação, etc.).
 - **500 Internal Server Error**: Erro no servidor.
 
+## 🧠 Desafios Enfrentados
+
+Durante o desenvolvimento da API **BetterBoxd**, enfrentei e superei diversos desafios que contribuíram significativamente para meu aprendizado e amadurecimento como desenvolvedor:
+
+- **Implementação de Arquitetura Limpa**  
+  Adotar a Clean Architecture exigiu um entendimento aprofundado sobre separação de responsabilidades, organização em camadas e a importância de manter a independência entre domínio, aplicação e infraestrutura.
+
+- **Aplicação dos Princípios SOLID**  
+  Incorporar os princípios SOLID na estrutura do projeto foi desafiador, mas essencial para garantir a manutenibilidade, legibilidade e escalabilidade do código.
+
+- **Criação e Uso de Repositórios**  
+  Trabalhar com o padrão Repository ajudou a desacoplar a lógica de acesso a dados, mas exigiu cuidado para manter a flexibilidade e evitar redundâncias.
+
+- **Manipulação Avançada com Entity Framework Core**  
+  Dominar o EF Core para realizar mapeamentos, configurar relacionamentos e controlar o ciclo de vida das entidades foi crucial para garantir o bom funcionamento da persistência de dados.
+
+- **Documentação da API com Swagger e XML**  
+  Garantir uma documentação clara e atualizada foi um desafio importante, principalmente ao integrar comentários XML para descrever corretamente os modelos e endpoints da API.
+
+- **Tratamento Robusto de Exceções**  
+  Construir um sistema consistente de tratamento de erros e retornar respostas HTTP apropriadas ajudou a melhorar a experiência do usuário e a confiabilidade da API.
+
 
 ## 💻 Instalação
 
 ```bash
 # Clone o repositório
-git clone https://github.com/VictorBrasileiroo/StoreManager-API.git
+git clone https://github.com/VictorBrasileiroo/Projeto_API_Betterboxd.git
 
 # Entre na pasta do projeto
-cd StoreManager-API
+cd Betterboxd.sln
 
 # Restaure os pacotes
 dotnet restore
 
 # Atualize o banco de dados com as migrations
 dotnet ef database update
+
+#Instale os pacotes do Entity Framework e FluentValidation
 ```
 
 ## 📂 Estrutura do Projeto
 
 ```
-├── StoreManager.API.sln/
-│   ├── StoreManager.API/            # Projeto principal da API
-│   │   ├── Controllers/             # Endpoints da API
-│   │   ├── Data/                    # Contexto do Banco de dados
-│   │   ├── DTOs/                    # Objetos de Transferência de Dados
-│   │   ├── Migrations/              # Migrações para o Banco de Dados
-│   │   ├── Models/                  # Modelos/Entidades
-│   │   ├── Services/                # Serviços de negócio
-│   │       ├── Interfaces/          # Interfaces
-│           ├── Services/            # Métodos
-│   │   └── Program.cs               # Ponto de entrada da aplicação
+├── Betterboxd.sln/                        # Solução principal da aplicação
+│
+├── Betterboxd.API/                        # Projeto principal da API (.NET Web API)
+│   ├── Controllers/                       # Controladores com os endpoints da API
+│   ├── appsettings.json                   # Configurações da aplicação
+│   ├── Program.cs                         # Ponto de entrada da aplicação
+│   └── Betterboxd.API.http                # Arquivo para testes de requisições HTTP (VS)
+│
+├── Betterboxd.App/                        # Camada de aplicação (regras de negócio)
+│   ├── Dtos/                              # Objetos de Transferência de Dados
+│   ├── Interfaces/                        # Interfaces dos serviços de aplicação
+│   ├── Services/                          # Implementações dos serviços de aplicação
+│   └── Validations/                       # Classes de validação (FluentValidation, etc.)
+│
+├── Betterboxd.Core/                       # Camada central da aplicação (entidades + contratos)
+│   ├── Entities/                          # Entidades principais do domínio
+│   ├── Interfaces/                        # Interfaces do domínio (repos, serviços, etc.)
+│   └── Shared/                            # Classes compartilhadas (enums, helpers, base classes)
+│
+└── Betterboxd.Infra/                      # Camada de infraestrutura (acesso a dados)
+    ├── Context/                           # DbContext e configuração do EF Core
+    ├── Migrations/                        # Migrações do banco de dados
+    └── Repositories/                      # Implementações dos repositórios
+
 ```
 
 ## ⚙️ Configuração
@@ -149,21 +187,21 @@ dotnet ef database update
 
 ### Usando linha de comando:
 ```bash
-cd src/StoreManager.API
+cd src/Betterboxd.API
 dotnet run
 ```
 
-A API estará disponível em: `https://localhost:7066/` (ou a porta configurada)
+A API estará disponível em: `https://localhost:7102/` (ou a porta configurada)
 
 ## 🤝 Contribuição
 Sinta-se à vontade para sugerir melhorias e correções!
 
 ## 📄 Licença
 
-Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE.md para detalhes.
+Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE.txt para detalhes.
 
 ## 📧 Contato
 
 Victor André Lopes Brasileiro - valb1@ic.ufal.br
 
-Link do Projeto: [https://github.com/VictorBrasileiroo/StoreManager-API](https://github.com/VictorBrasileiroo/StoreManager-API)
+Link do Projeto: [https://github.com/VictorBrasileiroo/Projeto_API_Betterboxd](https://github.com/VictorBrasileiroo/Projeto_API_Betterboxd)
