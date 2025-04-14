@@ -199,6 +199,7 @@ Sinta-se à vontade para sugerir melhorias e correções!
 ## 📄 Licença
 
 Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE.txt para detalhes.
+Este projeto foi totalmente desenvolvido apenas para fins educacionais, sem o intuito de venda ou distribuição.
 
 ## 📧 Contato
 
